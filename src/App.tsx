@@ -140,19 +140,28 @@ export const App: React.FC = () => {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/lucas-sva/mesmo-barco"
+              href="https://lucas-sva.github.io/mesmo-barco/"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-blue-600 transition-colors"
+              className="hover:text-slate-900 transition-colors"
             >
-              GitHub Mesmo Barco
+              Mesmo Barco (App)
+            </a>
+            <span>·</span>
+            <a
+              href="https://github.com/lucas-sva/provao"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-slate-900 transition-colors"
+            >
+              GitHub deste Projeto
             </a>
             <span>·</span>
             <a
               href="https://www.cev.uece.br"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-blue-600 transition-colors"
+              className="hover:text-slate-900 transition-colors"
             >
               Portal CEV/UECE
             </a>

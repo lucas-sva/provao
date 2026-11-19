@@ -5,13 +5,12 @@ import { VillainDisciplineBar } from '../components/VillainDisciplineBar';
 import { HistogramChart } from '../components/HistogramChart';
 import { ScatterPlotLotacao } from '../components/ScatterPlotLotacao';
 import {
-  AlertTriangle,
   Users,
   CheckCircle2,
-  AlertOctagon,
-  Flame,
+  AlertCircle,
+  FileText,
   ArrowRight,
-  ShieldCheck,
+  Shield,
 } from 'lucide-react';
 
 interface OverviewViewProps {
@@ -32,34 +31,36 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
   const { kpis, villain_ranking, histogram, top_failed_scores } = summary;
 
   return (
-    <div className="space-y-8">
-      {/* Shock Alert Banner for T2 */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-rose-900 via-rose-800 to-red-900 text-white p-6 sm:p-7 shadow-lg border border-rose-700/60">
-        <div className="relative z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/30 text-rose-200 border border-rose-400/30 text-xs font-bold uppercase tracking-wider mb-3">
-            <Flame className="w-4 h-4 text-rose-300" />
-            Choque de Realidade para a Turma 2 (T2)
+    <div className="space-y-6">
+      {/* Informative / Journalistic Executive Briefing Card */}
+      <div className="glass-panel p-6 sm:p-7 rounded-xl border border-slate-200 shadow-xs bg-white">
+        <div className="max-w-4xl space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
+            <FileText className="w-3.5 h-3.5 text-slate-500" />
+            <span>Panorama Analítico · Turma 1</span>
           </div>
 
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white text-balance leading-tight">
-            Quase 1 a cada 5 alunos da T1 não passou no Provão.
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug">
+            Diagnóstico dos Resultados da Avaliação Final (CFP / PC-CE)
           </h2>
 
-          <p className="mt-2.5 text-sm sm:text-base text-rose-100/90 text-pretty leading-relaxed">
-            De 689 alunos avaliados, <strong className="text-white underline decoration-rose-400">122 foram reprovados (17,7%)</strong>. O maior perigo não foi a nota geral: <strong className="text-white">101 alunos foram eliminados exclusivamente pelo corte de 7 pontos por matéria</strong>, inclusive colegas que fizeram <strong className="text-white font-extrabold">93, 90 e 89 pontos</strong> no total!
+          <p className="text-sm text-slate-600 leading-relaxed text-pretty">
+            Dos 689 alunos avaliados no provão da primeira turma (Comunicado Nº 284/2026-CEV/UECE),{' '}
+            <strong className="text-slate-900 font-semibold">122 (17,7%)</strong> não alcançaram os perfis de aprovação na lista preliminar. A análise quantitativa revela que a pontuação total não foi a principal barreira:{' '}
+            <strong className="text-slate-900 font-semibold">101 candidatos foram desclassificados exclusivamente pelo critério de 7 pontos por disciplina</strong>, incluindo alunos com pontuações globais de até <strong className="text-slate-900 font-semibold">93 e 90 pontos</strong>.
           </p>
 
-          <div className="mt-5 flex flex-wrap items-center gap-3">
+          <div className="pt-2 flex flex-wrap items-center gap-3">
             <button
               onClick={onNavigateToSimulator}
-              className="tactile-button inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-rose-900 font-bold text-xs sm:text-sm shadow-md hover:bg-rose-50 transition-colors cursor-pointer"
+              className="tactile-button inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-slate-900 text-white font-medium text-xs hover:bg-slate-800 transition-colors cursor-pointer"
             >
-              <span>Simular meu risco na T2</span>
-              <ArrowRight className="w-4 h-4 text-rose-800" />
+              <span>Acessar Simulador de Critérios</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
-            <span className="text-xs text-rose-200 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              Regra da CEV: mínimo 7 em todas as 10 matérias e 80 no total
+            <span className="text-xs text-slate-500 flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5 text-slate-400" />
+              Critérios oficiais: mínimo 7 em cada disciplina e mínimo 80 no total
             </span>
           </div>
         </div>
@@ -68,60 +69,54 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <StatCard
-          title="Total Avaliados"
+          title="Total de Avaliados"
           value={kpis.total_evaluated}
-          subtitle="Candidatos presentes na T1 (Oficial Investigador)"
-          icon={<Users className="w-5 h-5 text-slate-500" />}
-          badge="689 nomes"
+          subtitle="Candidatos presentes no Provão da T1"
+          icon={<Users className="w-4 h-4 text-slate-500" />}
+          badge="689 alunos"
         />
 
         <StatCard
-          title="Aprovados Plenos"
+          title="Aprovados nos Perfis"
           value={kpis.approved_count}
-          subtitle="Cumpriram corte total (≥80) e corte de matéria (≥7)"
-          icon={<CheckCircle2 className="w-5 h-5 text-emerald-600" />}
+          subtitle="Atingiram simultaneamente o corte global e o setorial"
+          icon={<CheckCircle2 className="w-4 h-4 text-emerald-700" />}
           badge={`${kpis.approved_pct}%`}
           badgeVariant="emerald"
         />
 
         <StatCard
-          title="Caiu por Disciplina"
+          title="Retidos por Disciplina"
           value={kpis.failed_disc_count}
-          subtitle="Tiveram nota < 7 em alguma matéria (maior vilão)"
-          icon={<AlertTriangle className="w-5 h-5 text-rose-600" />}
+          subtitle="Obtiveram nota < 7 em pelo menos uma disciplina"
+          icon={<AlertCircle className="w-4 h-4 text-red-800" />}
           badge={`${kpis.failed_disc_pct}%`}
           badgeVariant="rose"
-          highlight={true}
         />
 
         <StatCard
-          title="Caiu no Total"
+          title="Retidos no Total"
           value={kpis.failed_total_count}
-          subtitle="Fizeram menos de 80 pontos no somatório total"
-          icon={<AlertOctagon className="w-5 h-5 text-amber-600" />}
+          subtitle="Não atingiram o mínimo de 80 pontos globais"
+          icon={<AlertCircle className="w-4 h-4 text-amber-700" />}
           badge={`${kpis.failed_total_pct}%`}
           badgeVariant="amber"
         />
       </div>
 
-      {/* Top Shock Casualties Table */}
-      <div className="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-sm">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/80 pb-4 mb-4">
+      {/* Notable Cases: High total scores with discipline retention */}
+      <div className="glass-panel p-5 sm:p-6 rounded-xl border border-slate-200 shadow-xs bg-white">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/80 pb-3 mb-4">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-rose-50 text-rose-600 border border-rose-200">
-                <AlertTriangle className="w-4 h-4" />
-              </span>
-              <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                O Perigo Invisível: Alunos com Notão que Reprovaram
-              </h3>
-            </div>
-            <p className="text-xs text-slate-500 mt-1">
-              Casos reais da T1 de alunos que pontuaram muito acima de 80, mas caíram pela régua de corte de 7 pontos por matéria.
+            <h3 className="text-sm sm:text-base font-bold text-slate-900">
+              Casos Notáveis: Desempenho Global Elevado com Retenção Setorial
+            </h3>
+            <p className="text-xs text-slate-500 mt-0.5">
+              Registros oficiais de alunos que obtiveram pontuações globais elevadas (&ge; 80 pts), mas não cumpriram a exigência mínima de 7 acertos por matéria.
             </p>
           </div>
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-rose-100 text-rose-800">
-            Corte CEV/UECE: Mínimo 7 por matéria
+          <span className="text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+            Regra CEV: Mínimo 7 por disciplina
           </span>
         </div>
 
@@ -132,25 +127,25 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
               <div
                 key={tf.pedido}
                 onClick={() => candidateObj && onSelectCandidate(candidateObj)}
-                className="p-3.5 rounded-xl bg-white border border-rose-200 hover:border-rose-300 hover:bg-rose-50/30 transition-all cursor-pointer tactile-button"
+                className="p-3 rounded-lg bg-slate-50/70 border border-slate-200 hover:border-slate-300 hover:bg-white transition-all cursor-pointer tactile-button"
               >
-                <div className="flex items-center justify-between mb-1.5">
+                <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-bold text-slate-900 truncate pr-2">
                     {tf.nome}
                   </span>
-                  <span className="tabular-nums font-extrabold text-sm px-2 py-0.5 rounded-md bg-rose-600 text-white shadow-xs">
+                  <span className="tabular-nums font-bold text-xs px-2 py-0.2 rounded bg-slate-800 text-white">
                     {tf.total} pts
                   </span>
                 </div>
                 <div className="text-xs text-slate-600">
-                  <span className="text-slate-400">Reprovou por: </span>
-                  <span className="font-semibold text-rose-700">
+                  <span className="text-slate-400">Disciplina abaixo do corte: </span>
+                  <span className="font-medium text-red-900">
                     {tf.failing_disciplines.join(', ')}
                   </span>
                 </div>
-                <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100">
+                <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400 pt-1.5 border-t border-slate-200/60">
                   <span>Pedido #{tf.pedido}</span>
-                  <span className="text-blue-600 font-medium">Ver Raio-X →</span>
+                  <span className="text-slate-600 font-medium hover:underline">Ver detalhes →</span>
                 </div>
               </div>
             );
@@ -158,7 +153,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
         </div>
       </div>
 
-      {/* Villain Ranking & Histogram Split */}
+      {/* Retention Ranking & Histogram Split */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <VillainDisciplineBar
           ranking={villain_ranking}

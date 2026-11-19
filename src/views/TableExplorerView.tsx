@@ -187,8 +187,8 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
           >
             <option value="all">Todas as Situações</option>
             <option value="approved">Apenas Aprovados</option>
-            <option value="failed_disc">Caiu por Matéria (&lt; 7)</option>
-            <option value="failed_total">Caiu no Total (&lt; 80)</option>
+            <option value="failed_disc">Retido por Disciplina (&lt; 7)</option>
+            <option value="failed_total">Retido no Total (&lt; 80)</option>
           </select>
 
           {/* Failing discipline select */}
@@ -197,10 +197,10 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
             onChange={(e) => setFailingDisciplineFilter(e.target.value)}
             className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 font-medium focus:ring-1 focus:ring-blue-500"
           >
-            <option value="all">Qualquer Matéria</option>
+            <option value="all">Qualquer Disciplina</option>
             {disciplines.map((d) => (
               <option key={d.code} value={d.code}>
-                Tirou &lt; 7 em {d.short}
+                Nota &lt; 7 em {d.short}
               </option>
             ))}
           </select>
