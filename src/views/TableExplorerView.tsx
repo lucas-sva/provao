@@ -5,7 +5,6 @@ import Fuse from 'fuse.js';
 import {
   Search,
   Download,
-  Filter,
   ArrowUpDown,
   X,
   AlertCircle,
@@ -147,8 +146,9 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
     <div className="space-y-4">
       {/* Search and Filters Bar */}
       <div className="glass-panel p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-sm space-y-3.5 bg-white">
+        {/* Row 1: Search & Export CSV */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-          {/* Search Input */}
+          {/* Search Input (44px min touch target, 16px font to prevent mobile zoom) */}
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
@@ -159,12 +159,12 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
                 setDisplayCount(40);
               }}
               placeholder="Buscar candidato por nome ou número do pedido..."
-              className="w-full pl-10 pr-9 py-2.5 rounded-xl bg-slate-50 hover:bg-white focus:bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-2xs"
+              className="w-full h-11 pl-10 pr-10 rounded-xl bg-slate-50 hover:bg-slate-100/60 focus:bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-all shadow-2xs"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                className="tactile-button absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-2 cursor-pointer"
                 aria-label="Limpar busca"
               >
                 <X className="w-4 h-4" />
@@ -175,66 +175,123 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
           {/* Export CSV button */}
           <button
             onClick={exportCSV}
-            className="tactile-button inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-xs transition-colors cursor-pointer whitespace-nowrap self-stretch sm:self-auto"
+            className="tactile-button h-11 inline-flex items-center justify-center gap-2 px-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer whitespace-nowrap self-stretch sm:self-auto"
           >
             <Download className="w-4 h-4 text-slate-500" />
             <span>Exportar CSV ({filteredCandidates.length})</span>
           </button>
         </div>
 
-        {/* Filter Selects (No abbreviated names!) */}
-        <div className="flex flex-wrap items-center gap-2 pt-2.5 border-t border-slate-200/80 text-xs">
-          <span className="font-semibold text-slate-500 flex items-center gap-1 mr-1">
-            <Filter className="w-3.5 h-3.5" />
-            Filtros:
-          </span>
-
-          {/* Status select */}
-          <select
-            value={statusFilter}
-            onChange={(e) => {
-              setStatusFilter(e.target.value as any);
+        {/* Quick Filter Chips for Status (1-Tap Selection on Mobile & Desktop) */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 pt-0.5 text-xs font-semibold scrollbar-none">
+          <button
+            onClick={() => {
+              setStatusFilter('all');
               setDisplayCount(40);
             }}
-            className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 font-medium focus:ring-1 focus:ring-blue-500 cursor-pointer text-xs"
+            className={`tactile-button px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer transition-all ${
+              statusFilter === 'all'
+                ? 'bg-slate-900 text-white shadow-2xs'
+                : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+            }`}
           >
-            <option value="all">Todas as Situações</option>
-            <option value="approved">Apenas Aprovados</option>
-            <option value="failed_disc">Retido por Disciplina (&lt; 7)</option>
-            <option value="failed_total">Retido no Total (&lt; 80)</option>
-          </select>
-
-          {/* Failing discipline select with Full Clean Names */}
-          <select
-            value={failingDisciplineFilter}
-            onChange={(e) => {
-              setFailingDisciplineFilter(e.target.value);
+            Todos ({candidates.length})
+          </button>
+          <button
+            onClick={() => {
+              setStatusFilter('approved');
               setDisplayCount(40);
             }}
-            className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 font-medium focus:ring-1 focus:ring-blue-500 cursor-pointer text-xs max-w-[260px] sm:max-w-xs truncate"
+            className={`tactile-button px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer transition-all ${
+              statusFilter === 'approved'
+                ? 'bg-emerald-800 text-white shadow-2xs'
+                : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200/60'
+            }`}
           >
-            <option value="all">Qualquer Disciplina</option>
-            {disciplines.map((d) => (
-              <option key={d.code} value={d.code}>
-                Nota &lt; 7 em {d.name}
-              </option>
-            ))}
-          </select>
-
-          {/* Segment select */}
-          <select
-            value={segmentFilter}
-            onChange={(e) => {
-              setSegmentFilter(e.target.value);
+            Aprovados (567)
+          </button>
+          <button
+            onClick={() => {
+              setStatusFilter('failed_disc');
               setDisplayCount(40);
             }}
-            className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 font-medium focus:ring-1 focus:ring-blue-500 cursor-pointer text-xs"
+            className={`tactile-button px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer transition-all ${
+              statusFilter === 'failed_disc'
+                ? 'bg-red-800 text-white shadow-2xs'
+                : 'bg-red-50 text-red-900 hover:bg-red-100 border border-red-200/60'
+            }`}
           >
-            <option value="all">Todos os Segmentos</option>
-            <option value="ampla">Ampla Concorrência</option>
-            <option value="negro">Cotas Raciais (Negros)</option>
-            <option value="pcd">PcD</option>
-          </select>
+            Retidos por Matéria (101)
+          </button>
+          <button
+            onClick={() => {
+              setStatusFilter('failed_total');
+              setDisplayCount(40);
+            }}
+            className={`tactile-button px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer transition-all ${
+              statusFilter === 'failed_total'
+                ? 'bg-amber-700 text-white shadow-2xs'
+                : 'bg-amber-50 text-amber-900 hover:bg-amber-100 border border-amber-200/60'
+            }`}
+          >
+            Retidos no Total (21)
+          </button>
+        </div>
+
+        {/* Row 2: Aligned Select Dropdowns (Full Clean Names, No Abbreviations!) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2.5 border-t border-slate-200/80 text-xs sm:text-sm">
+          {/* Discipline with cut (< 7) select with Full Clean Names */}
+          <div>
+            <label htmlFor="filter-disc" className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+              Disciplina com nota &lt; 7:
+            </label>
+            <select
+              id="filter-disc"
+              value={failingDisciplineFilter}
+              onChange={(e) => {
+                setFailingDisciplineFilter(e.target.value);
+                setDisplayCount(40);
+              }}
+              className="w-full h-11 px-3 rounded-xl bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 text-slate-800 font-medium focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 cursor-pointer text-xs sm:text-sm"
+            >
+              <option value="all">Todas as Disciplinas</option>
+              {disciplines.map((d) => (
+                <option key={d.code} value={d.code}>
+                  Corte em {d.name} ({d.below_7_count} alunos)
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Segment / Cota select */}
+          <div>
+            <label htmlFor="filter-seg" className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+              Segmento / Cota de Concurso:
+            </label>
+            <select
+              id="filter-seg"
+              value={segmentFilter}
+              onChange={(e) => {
+                setSegmentFilter(e.target.value);
+                setDisplayCount(40);
+              }}
+              className="w-full h-11 px-3 rounded-xl bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 text-slate-800 font-medium focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 cursor-pointer text-xs sm:text-sm"
+            >
+              <option value="all">Todos os Segmentos</option>
+              <option value="ampla">Ampla Concorrência</option>
+              <option value="negro">Cotas Raciais (Negros)</option>
+              <option value="pcd">PcD (Pessoas com Deficiência)</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Row 3: Active Filters Summary & Counter */}
+        <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-slate-500 font-medium tabular-nums">
+              Exibindo <strong>{filteredCandidates.length}</strong> de <strong>{candidates.length}</strong> candidatos
+            </span>
+          </div>
 
           {hasActiveFilters && (
             <button
@@ -245,10 +302,6 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
               <span>Limpar Filtros</span>
             </button>
           )}
-
-          <div className="ml-auto text-slate-500 font-medium tabular-nums text-xs">
-            Exibindo <strong>{filteredCandidates.length}</strong> de <strong>{candidates.length}</strong>
-          </div>
         </div>
       </div>
 
@@ -310,39 +363,56 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
                   />
                 </div>
 
-                {/* 10 Discipline Scores Quick Strip */}
-                <div className="pt-2 border-t border-slate-200/70">
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                    <span>Notas nas 10 Disciplinas (Corte: 7)</span>
-                    <span className="text-blue-700 lowercase font-medium flex items-center">
-                      ver raio-x <ChevronRight className="w-3 h-3 ml-0.5" />
+                {/* If candidate has failing disciplines, display full clean names */}
+                {c.failing_disciplines.length > 0 && (
+                  <div className="p-2.5 rounded-xl bg-red-50 border border-red-200 text-xs">
+                    <span className="font-bold text-red-900 block mb-1">
+                      Disciplina(s) abaixo do corte (&lt; 7):
                     </span>
+                    <div className="space-y-1">
+                      {c.failing_disciplines.map((code) => {
+                        const d = disciplines.find((item) => item.code === code);
+                        const sc = d ? c.scores[d.id - 1] : 0;
+                        return (
+                          <div key={code} className="flex items-center justify-between text-red-950 font-medium">
+                            <span className="leading-snug pr-2">{d?.name || code}</span>
+                            <span className="font-bold tabular-nums bg-red-800 text-white px-2 py-0.5 rounded text-[11px] flex-shrink-0 shadow-2xs">
+                              {sc}/10 pts
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
+                )}
 
-                  <div className="grid grid-cols-5 gap-1.5 text-center">
+                {/* 10 Discipline Scores Quick Strip */}
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1 overflow-x-auto py-0.5">
                     {c.scores.map((sc, scIdx) => {
                       const d = disciplines[scIdx];
                       const isFail = sc < 7;
                       return (
                         <div
                           key={scIdx}
-                          className={`p-1 rounded-md border text-[11px] font-bold tabular-nums ${
+                          className={`w-6 h-6 rounded flex items-center justify-center text-[11px] font-bold tabular-nums flex-shrink-0 ${
                             isFail
-                              ? 'bg-red-800 text-white border-red-900'
+                              ? 'bg-red-800 text-white font-extrabold shadow-2xs'
                               : sc === 10
-                              ? 'bg-blue-50 text-blue-900 border-blue-200'
-                              : 'bg-slate-50 text-slate-800 border-slate-200'
+                              ? 'bg-blue-50 text-blue-900 border border-blue-200'
+                              : 'bg-slate-100 text-slate-700'
                           }`}
-                          title={`${d?.name || `D0${scIdx+1}`}: ${sc} pts`}
+                          title={`${d?.name || `Matéria ${scIdx+1}`}: ${sc} pts`}
                         >
-                          <span className="text-[9px] font-mono text-slate-400 block font-normal leading-none mb-0.5">
-                            {d?.code || `D${scIdx+1}`}
-                          </span>
                           {sc}
                         </div>
                       );
                     })}
                   </div>
+
+                  <span className="text-xs text-blue-700 font-semibold hover:underline flex items-center ml-auto flex-shrink-0">
+                    Detalhes <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
+                  </span>
                 </div>
               </div>
             );
@@ -412,10 +482,10 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
                 {disciplines.map((d) => (
                   <th
                     key={d.code}
-                    className="py-3 px-1.5 text-center font-mono text-[10px] whitespace-nowrap"
-                    title={`${d.id}. ${d.name} (${d.range})`}
+                    className="py-3 px-1 text-center font-bold text-[11px] text-slate-700 w-9 min-w-[36px] max-w-[40px] whitespace-nowrap cursor-help select-none"
+                    title={`${d.id}. ${d.name} (Questões ${d.range} do Provão)`}
                   >
-                    {d.code}
+                    <span className="block">{d.id}</span>
                   </th>
                 ))}
                 <th
@@ -469,9 +539,9 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
                         <MetricBadge type="segment" value={c.segment} />
                       </td>
 
-                      {/* 10 Discipline Scores */}
+                      {/* 10 Discipline Scores (Fixed Dimension for Flawless Vertical Alignment) */}
                       {c.scores.map((sc, scIdx) => (
-                        <td key={scIdx} className="py-2.5 px-1.5 text-center text-[11px]">
+                        <td key={scIdx} className="py-2.5 px-1 text-center w-9 min-w-[36px] max-w-[40px]">
                           <MetricBadge type="score" value={sc} />
                         </td>
                       ))}

@@ -54,16 +54,16 @@ export const BrandHeader: React.FC<BrandHeaderProps> = ({
     },
     {
       id: 'explorer',
-      label: 'Tabela de Candidatos',
+      label: 'Candidatos',
       icon: Table2,
-      badge: `${candidateCount} alunos`,
+      badge: `${candidateCount}`,
       desc: 'Busca instantânea e boletim individual completo',
     },
     {
       id: 'disciplines',
-      label: 'Análise por Disciplina',
+      label: 'Disciplinas',
       icon: BookOpen,
-      badge: '10 matérias',
+      badge: '10',
       desc: 'Médias, cortes e distribuição de acertos',
     },
   ];

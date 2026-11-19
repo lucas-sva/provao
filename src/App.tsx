@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import type { Candidate, ProvaoSummary, ActiveTab } from './types/provao';
 import { fetchSummary, fetchCandidates } from './lib/dataService';
 import { BrandHeader } from './components/BrandHeader';
-import { TabNavigation } from './components/TabNavigation';
 import { CandidateDrawer } from './components/CandidateDrawer';
 import { OverviewView } from './views/OverviewView';
 import { TableExplorerView } from './views/TableExplorerView';
@@ -83,13 +82,6 @@ export const App: React.FC = () => {
 
       {/* Main Content Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6">
-        {/* Mobile-only Segmented Navigation Bar */}
-        <TabNavigation
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          candidateCount={candidates.length}
-        />
-
         {/* View Switcher */}
         {activeTab === 'overview' && (
           <OverviewView

@@ -38,8 +38,8 @@ export const VillainDisciplineBar: React.FC<VillainDisciplineBarProps> = ({
           </div>
         </div>
 
-        {/* Ranking List */}
-        <div className="space-y-2.5">
+        {/* Ranking List with Scroll to balance height with HistogramChart */}
+        <div className="space-y-2.5 max-h-[460px] overflow-y-auto pr-1.5">
           {ranking.map((disc, idx) => {
             const isTop3 = idx < 3;
             const barWidth = Math.max((disc.below_7_count / maxFailures) * 100, 4);

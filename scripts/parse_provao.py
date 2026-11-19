@@ -33,18 +33,23 @@ def main():
             raise FileNotFoundError(f"PDF {pdf_path} não encontrado.")
 
     print(f"Extraindo texto de {pdf_path}...")
-    txt_path = "/tmp/comunicado_extracted.txt"
-    subprocess.run(["pdftotext", "-layout", pdf_path, txt_path], check=True)
-
-    with open(txt_path, "r", encoding="utf-8", errors="ignore") as f:
-        content = f.read()
+    try:
+        import pypdf
+        reader = pypdf.PdfReader(pdf_path)
+        content = "\n".join([page.extract_text() for page in reader.pages])
+    except Exception as e:
+        print(f"pypdf falhou ({e}), tentando pdftotext...")
+        txt_path = "data/comunicado_extracted.txt"
+        subprocess.run(["pdftotext", "-layout", pdf_path, txt_path], check=True)
+        with open(txt_path, "r", encoding="utf-8", errors="ignore") as f:
+            content = f.read()
 
     # Regex para capturar linhas de dados
     # Linha exemplo: "  4519   ABIDIEL DAS NEVES SILVA  10  8  9  9 10  9 10  9  9  9   92 Alcançou os perfis de aprovação"
     pattern = re.compile(
         r'^\s*(\d+)\s+([^\d\n]+?)\s+'
         r'(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+'
-        r'(\d+)\s+(Alcançou os perfis de aprovação|Não atingiu o perfil de disciplina|Não atingiu o perfil total|Faltoso.*)$',
+        r'(\d+)\s+(Alcançou os perfis de aprovação|Não atingiu o perfil de disciplina|Não atingiu o perfil total|Faltoso.*?)\s*$',
         re.MULTILINE
     )
 
@@ -122,15 +127,23 @@ def main():
             "sexo": sexo
         })
 
+    # Normalizar o ranking de entrada da Turma 1 (1º a 689º)
+    # A Turma 1 possui exatamente 689 candidatos. No concurso geral (com mais de 3.000 aprovados),
+    # candidatos de Cotas/PcD ou de convocações específicas possuíam rank_geral alto (ex: Daniel Reis = 2130).
+    # Dentro da Turma 1, eles devem ser ordenados de 1º a 689º para refletir a verdadeira posição de entrada na T1.
+    candidates_sorted_by_1a = sorted(
+        candidates,
+        key=lambda c: (c.get("rank_1a_fase") if c.get("rank_1a_fase") is not None else 99999, -(c.get("nota_total_1a") or 0))
+    )
+    for idx_1a, c in enumerate(candidates_sorted_by_1a, 1):
+        c["rank_1a_concurso"] = c["rank_1a_fase"]  # Guarda o ranking geral do concurso como referência
+        c["rank_1a_fase"] = idx_1a
+
     # Ordenar por nota do provão decrescente (e desempate por nota na 1ª fase se disponível)
     candidates.sort(key=lambda c: (c["total"], c["nota_total_1a"] or 0), reverse=True)
     for rank_idx, c in enumerate(candidates, 1):
         c["rank_provao"] = rank_idx
-        if c["rank_1a_fase"]:
-            # Delta de posições: se rank_1a era 200 e rank_provao é 50, delta = +150 (subiu 150 posições)
-            c["rank_delta"] = c["rank_1a_fase"] - c["rank_provao"]
-        else:
-            c["rank_delta"] = 0
+        c["rank_delta"] = c["rank_1a_fase"] - c["rank_provao"]
 
     print(f"Candidatos processados: {len(candidates)}")
 
@@ -215,7 +228,7 @@ def main():
             "total": c["total"],
             "pedido": c["pedido"],
             "failing_disciplines": [
-                f"{d['short']} ({c['scores'][d['id']-1]} pts)"
+                f"{d['name']} ({c['scores'][d['id']-1]} pts)"
                 for d in DISCIPLINES if c["scores"][d["id"]-1] < 7
             ]
         })

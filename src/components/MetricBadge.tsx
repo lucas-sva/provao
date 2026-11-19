@@ -54,12 +54,12 @@ export const MetricBadge: React.FC<MetricBadgeProps> = ({ type, value, failingCo
     const isFail = num < 7;
     return (
       <span
-        className={`tabular-nums inline-block font-semibold ${
+        className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center font-bold tabular-nums text-center mx-auto text-xs ${
           isFail
-            ? 'text-red-900 font-bold bg-red-50 px-1.5 py-0.5 rounded border border-red-200/80'
+            ? 'bg-red-800 text-white shadow-2xs font-extrabold'
             : num === 10
-            ? 'text-blue-900 font-bold'
-            : 'text-slate-800'
+            ? 'bg-blue-50 text-blue-900 border border-blue-200/90 font-bold'
+            : 'text-slate-800 bg-slate-50 border border-slate-200/70 font-semibold'
         }`}
       >
         {num}

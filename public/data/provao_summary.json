@@ -648,7 +648,7 @@
       "total": 93,
       "pedido": 444,
       "failing_disciplines": [
-        "Homicídios e Feminicídios (6 pts)"
+        "Investigação de Homicídios e Feminicídios (6 pts)"
       ]
     },
     {
@@ -656,7 +656,7 @@
       "total": 90,
       "pedido": 24057,
       "failing_disciplines": [
-        "Relatório de Investigação (6 pts)"
+        "Relatório de Investigação Policial (6 pts)"
       ]
     },
     {
@@ -664,7 +664,7 @@
       "total": 89,
       "pedido": 11955,
       "failing_disciplines": [
-        "Preservação da Prova e Local (6 pts)"
+        "Preservação da Prova e Local do Crime (6 pts)"
       ]
     },
     {
@@ -672,7 +672,7 @@
       "total": 89,
       "pedido": 14155,
       "failing_disciplines": [
-        "Homicídios e Feminicídios (6 pts)"
+        "Investigação de Homicídios e Feminicídios (6 pts)"
       ]
     },
     {
@@ -680,7 +680,7 @@
       "total": 89,
       "pedido": 6643,
       "failing_disciplines": [
-        "Homicídios e Feminicídios (6 pts)"
+        "Investigação de Homicídios e Feminicídios (6 pts)"
       ]
     },
     {
@@ -688,7 +688,7 @@
       "total": 89,
       "pedido": 27161,
       "failing_disciplines": [
-        "Extração de Dados Móveis (6 pts)"
+        "Extração de Dados de Dispositivos Móveis (6 pts)"
       ]
     },
     {
@@ -696,7 +696,7 @@
       "total": 89,
       "pedido": 3891,
       "failing_disciplines": [
-        "Homicídios e Feminicídios (6 pts)"
+        "Investigação de Homicídios e Feminicídios (6 pts)"
       ]
     },
     {
@@ -704,7 +704,7 @@
       "total": 88,
       "pedido": 15127,
       "failing_disciplines": [
-        "Preservação da Prova e Local (6 pts)"
+        "Preservação da Prova e Local do Crime (6 pts)"
       ]
     },
     {
@@ -712,7 +712,7 @@
       "total": 88,
       "pedido": 28300,
       "failing_disciplines": [
-        "Homicídios e Feminicídios (6 pts)"
+        "Investigação de Homicídios e Feminicídios (6 pts)"
       ]
     },
     {
@@ -720,7 +720,7 @@
       "total": 88,
       "pedido": 28651,
       "failing_disciplines": [
-        "Relatório de Investigação (6 pts)"
+        "Relatório de Investigação Policial (6 pts)"
       ]
     }
   ]

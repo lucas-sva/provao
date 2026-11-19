@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { DisciplineStat, Candidate } from '../types/provao';
-import { BookOpen, ShieldCheck, ChevronRight, AlertCircle } from 'lucide-react';
+import { BookOpen, ShieldCheck, ChevronRight, ChevronDown, AlertCircle } from 'lucide-react';
 
 interface DisciplinesViewProps {
   disciplines: DisciplineStat[];
@@ -89,71 +89,53 @@ export const DisciplinesView: React.FC<DisciplinesViewProps> = ({
         <div>
           <h2 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-slate-700" />
-            Análise Individual das 10 Disciplinas
+            Análise Individual das Disciplinas
           </h2>
           <p className="text-xs text-slate-500 mt-0.5">
-            Selecione uma matéria para examinar a curva de notas dos 689 alunos, média da turma e retenções.
+            Examine a curva de notas dos 689 alunos, média da turma e reprovações no corte individual (mínimo de 7 acertos).
           </p>
         </div>
 
         <div className="flex items-center gap-2 text-xs">
           <span className="px-3 py-1.5 rounded-lg bg-red-50 text-red-900 font-bold border border-red-200/80">
-            D10 e D06 concentram 57% dos alunos retidos no corte
+            Extração de Dados e Homicídios concentram 57% das retenções
           </span>
         </div>
       </div>
 
-      {/* 10 Disciplines Navigation Selector (No text truncation on mobile!) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-2.5">
-        {disciplines.map((d) => {
-          const isSelected = d.code === selectedDisciplineCode;
-          const isHighRetention = d.below_7_count >= 20;
+      {/* Prominent Discipline Selector Dropdown (Intuitive and Mobile-First) */}
+      <div className="glass-panel p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-sm bg-white space-y-3">
+        <label htmlFor="discipline-select" className="block text-xs font-bold uppercase tracking-wider text-slate-600">
+          Selecione a disciplina para analisar:
+        </label>
 
-          return (
-            <button
-              key={d.code}
-              onClick={() => setSelectedDisciplineCode(d.code)}
-              className={`tactile-button p-3 sm:p-3.5 rounded-xl border text-left transition-all duration-140 cursor-pointer flex flex-col justify-between ${
-                isSelected
-                  ? 'bg-slate-900 text-white shadow-xs border-slate-900 font-bold'
-                  : 'bg-white text-slate-800 hover:bg-slate-50 border-slate-200'
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className={`font-mono font-bold ${isSelected ? 'text-slate-300' : 'text-slate-500'}`}>
-                    {d.code} · Q{d.range}
-                  </span>
-                  {d.below_7_count > 0 && (
-                    <span
-                      className={`text-[10px] px-2 py-0.5 rounded-md font-bold tabular-nums ${
-                        isSelected
-                          ? 'bg-white/20 text-white'
-                          : isHighRetention
-                          ? 'bg-red-50 text-red-900 border border-red-200'
-                          : 'bg-slate-100 text-slate-600'
-                      }`}
-                    >
-                      {d.below_7_count} retidos
-                    </span>
-                  )}
-                </div>
+        <div className="relative">
+          <select
+            id="discipline-select"
+            value={selectedDisciplineCode}
+            onChange={(e) => setSelectedDisciplineCode(e.target.value)}
+            className="w-full h-12 sm:h-14 pl-4 pr-11 rounded-xl bg-slate-50 hover:bg-slate-100/70 focus:bg-white border-2 border-slate-200 focus:border-blue-600 text-slate-900 font-bold text-sm sm:text-base focus:outline-none transition-all cursor-pointer shadow-2xs appearance-none"
+          >
+            {disciplines.map((d) => (
+              <option key={d.code} value={d.code} className="py-2 text-slate-900 font-medium">
+                {d.name} — Média: {d.average.toFixed(2)} | {d.below_7_count} abaixo de 7
+              </option>
+            ))}
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+            <ChevronDown className="w-5 h-5" />
+          </div>
+        </div>
 
-                {/* Full name without truncation */}
-                <p className="text-xs sm:text-sm font-bold leading-snug mt-1">
-                  {d.name}
-                </p>
-              </div>
-
-              <div className={`mt-2 pt-2 border-t text-[11px] tabular-nums flex items-center justify-between ${
-                isSelected ? 'border-white/20 text-slate-300' : 'border-slate-100 text-slate-500'
-              }`}>
-                <span>Média: <strong>{d.average.toFixed(2)}</strong>/10</span>
-                <span>{d.below_7_pct}% do total</span>
-              </div>
-            </button>
-          );
-        })}
+        {/* Quick Context Strip */}
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 text-xs text-slate-500 border-t border-slate-100">
+          <span>
+            Questões <strong>{selectedDiscipline.range}</strong> do caderno de provas
+          </span>
+          <span className="font-semibold text-red-900 bg-red-50 px-2.5 py-1 rounded-md border border-red-200">
+            {selectedDiscipline.below_7_count} alunos ({selectedDiscipline.below_7_pct}%) retidos no corte (&lt; 7)
+          </span>
+        </div>
       </div>
 
       {/* Selected Discipline Deep Dive Card */}
@@ -162,11 +144,11 @@ export const DisciplinesView: React.FC<DisciplinesViewProps> = ({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/80 pb-4">
           <div>
             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <span className="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
-                {selectedDiscipline.code} · Questões {selectedDiscipline.range}
+              <span className="text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-200">
+                Questões {selectedDiscipline.range}
               </span>
               {selectedDiscipline.below_7_count >= 20 && (
-                <span className="text-xs font-bold text-red-900 bg-red-50 px-2 py-0.5 rounded-md border border-red-200 flex items-center gap-1">
+                <span className="text-xs font-bold text-red-900 bg-red-50 px-2.5 py-0.5 rounded-md border border-red-200 flex items-center gap-1">
                   <AlertCircle className="w-3.5 h-3.5 text-red-700" />
                   Alta Retenção no Corte Setorial
                 </span>

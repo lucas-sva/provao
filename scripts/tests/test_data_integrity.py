@@ -87,5 +87,23 @@ class TestProvaoDataIntegrity(unittest.TestCase):
             self.assertIn("average", d)
             self.assertIn("below_7_count", d)
 
+    def test_t1_ranking_bounds_and_daniel_reis(self):
+        """Verifica se os rankings da 1ª fase e provão estão estritamente contidos em [1, 689]."""
+        for c in self.candidates:
+            self.assertGreaterEqual(c["rank_1a_fase"], 1)
+            self.assertLessEqual(c["rank_1a_fase"], 689)
+            self.assertGreaterEqual(c["rank_provao"], 1)
+            self.assertLessEqual(c["rank_provao"], 689)
+            self.assertEqual(c["rank_delta"], c["rank_1a_fase"] - c["rank_provao"])
+            self.assertGreaterEqual(c["rank_delta"], -688)
+            self.assertLessEqual(c["rank_delta"], 688)
+
+        # Caso específico do Daniel Reis (auditado pelo usuário)
+        daniel = next(c for c in self.candidates if "DANIEL REIS LEITE" in c["nome"])
+        self.assertEqual(daniel["rank_1a_fase"], 685)
+        self.assertEqual(daniel["rank_provao"], 135)
+        self.assertEqual(daniel["rank_delta"], 550)
+        self.assertEqual(daniel["total"], 95)
+
 if __name__ == "__main__":
     unittest.main()
