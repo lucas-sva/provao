@@ -1,0 +1,727 @@
+{
+  "metadata": {
+    "source": "Comunicado Nº 284/2026-CEV/UECE de 14/10/2026",
+    "exam_date": "27/09/2026",
+    "total_candidates": 689,
+    "disciplines_count": 10,
+    "questions_count": 100
+  },
+  "kpis": {
+    "total_evaluated": 689,
+    "approved_count": 567,
+    "approved_pct": 82.29,
+    "failed_disc_count": 101,
+    "failed_disc_pct": 14.66,
+    "failed_total_count": 21,
+    "failed_total_pct": 3.05,
+    "total_failed_count": 122,
+    "total_failed_pct": 17.71,
+    "avg_score": 89.13,
+    "median_score": 91,
+    "max_score": 99,
+    "min_score": 17,
+    "sole_discipline_fail_count": 79,
+    "sole_discipline_fail_pct": 78.2,
+    "two_discipline_fail_count": 15
+  },
+  "disciplines": [
+    {
+      "id": 1,
+      "code": "D01",
+      "name": "Gestão de Expedientes e Proc. Cartorários",
+      "short": "Cartorários",
+      "range": "01 a 10",
+      "average": 9.14,
+      "max": 10,
+      "min": 3,
+      "below_7_count": 16,
+      "below_7_pct": 2.32,
+      "below_6_count": 7,
+      "sole_cause_count": 2,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 2,
+        "4": 1,
+        "5": 4,
+        "6": 9,
+        "7": 31,
+        "8": 100,
+        "9": 223,
+        "10": 319
+      }
+    },
+    {
+      "id": 2,
+      "code": "D02",
+      "name": "Gestão de Seção de Investig. e Operações",
+      "short": "Seção Investig./Op.",
+      "range": "11 a 20",
+      "average": 8.84,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 29,
+      "below_7_pct": 4.21,
+      "below_6_count": 16,
+      "sole_cause_count": 8,
+      "distribution": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 3,
+        "4": 5,
+        "5": 5,
+        "6": 13,
+        "7": 53,
+        "8": 120,
+        "9": 244,
+        "10": 243
+      }
+    },
+    {
+      "id": 3,
+      "code": "D03",
+      "name": "Relatório de Investigação",
+      "short": "Relatório Investig.",
+      "range": "21 a 30",
+      "average": 8.67,
+      "max": 10,
+      "min": 2,
+      "below_7_count": 18,
+      "below_7_pct": 2.61,
+      "below_6_count": 8,
+      "sole_cause_count": 5,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 3,
+        "3": 1,
+        "4": 1,
+        "5": 3,
+        "6": 10,
+        "7": 46,
+        "8": 194,
+        "9": 298,
+        "10": 133
+      }
+    },
+    {
+      "id": 4,
+      "code": "D04",
+      "name": "Sistemas de Informações Policiais",
+      "short": "Sistemas Policiais",
+      "range": "31 a 40",
+      "average": 8.93,
+      "max": 10,
+      "min": 1,
+      "below_7_count": 34,
+      "below_7_pct": 4.93,
+      "below_6_count": 14,
+      "sole_cause_count": 11,
+      "distribution": {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 6,
+        "6": 20,
+        "7": 40,
+        "8": 112,
+        "9": 222,
+        "10": 281
+      }
+    },
+    {
+      "id": 5,
+      "code": "D05",
+      "name": "Preservação da Prova e Local do Crime",
+      "short": "Preservação/Local",
+      "range": "41 a 50",
+      "average": 8.9,
+      "max": 10,
+      "min": 1,
+      "below_7_count": 24,
+      "below_7_pct": 3.48,
+      "below_6_count": 8,
+      "sole_cause_count": 8,
+      "distribution": {
+        "0": 0,
+        "1": 1,
+        "2": 0,
+        "3": 1,
+        "4": 1,
+        "5": 5,
+        "6": 16,
+        "7": 41,
+        "8": 129,
+        "9": 267,
+        "10": 228
+      }
+    },
+    {
+      "id": 6,
+      "code": "D06",
+      "name": "Investigação de Homicídios e Feminicídios",
+      "short": "Homicídios/Femin.",
+      "range": "51 a 60",
+      "average": 8.55,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 46,
+      "below_7_pct": 6.68,
+      "below_6_count": 16,
+      "sole_cause_count": 18,
+      "distribution": {
+        "0": 2,
+        "1": 2,
+        "2": 0,
+        "3": 0,
+        "4": 2,
+        "5": 10,
+        "6": 30,
+        "7": 77,
+        "8": 148,
+        "9": 250,
+        "10": 168
+      }
+    },
+    {
+      "id": 7,
+      "code": "D07",
+      "name": "Investigação de Tráfico de Drogas",
+      "short": "Tráfico de Drogas",
+      "range": "61 a 70",
+      "average": 9.4,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 12,
+      "below_7_pct": 1.74,
+      "below_6_count": 8,
+      "sole_cause_count": 0,
+      "distribution": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 0,
+        "4": 3,
+        "5": 2,
+        "6": 4,
+        "7": 15,
+        "8": 52,
+        "9": 194,
+        "10": 416
+      }
+    },
+    {
+      "id": 8,
+      "code": "D08",
+      "name": "Investigação de Crimes Contra o Patrimônio",
+      "short": "Crimes Patrimônio",
+      "range": "71 a 80",
+      "average": 9.53,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 11,
+      "below_7_pct": 1.6,
+      "below_6_count": 9,
+      "sole_cause_count": 0,
+      "distribution": {
+        "0": 1,
+        "1": 2,
+        "2": 1,
+        "3": 2,
+        "4": 0,
+        "5": 3,
+        "6": 2,
+        "7": 9,
+        "8": 28,
+        "9": 167,
+        "10": 474
+      }
+    },
+    {
+      "id": 9,
+      "code": "D09",
+      "name": "Investig. de Corrupção e Contra Adm. Pública",
+      "short": "Corrupção/Adm. Púb.",
+      "range": "81 a 90",
+      "average": 8.96,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 15,
+      "below_7_pct": 2.18,
+      "below_6_count": 10,
+      "sole_cause_count": 0,
+      "distribution": {
+        "0": 1,
+        "1": 1,
+        "2": 0,
+        "3": 5,
+        "4": 0,
+        "5": 3,
+        "6": 5,
+        "7": 18,
+        "8": 96,
+        "9": 385,
+        "10": 175
+      }
+    },
+    {
+      "id": 10,
+      "code": "D10",
+      "name": "Extração de Dados de Dispositivos Móveis",
+      "short": "Extração Celulares",
+      "range": "91 a 100",
+      "average": 8.2,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 59,
+      "below_7_pct": 8.56,
+      "below_6_count": 31,
+      "sole_cause_count": 27,
+      "distribution": {
+        "0": 1,
+        "1": 4,
+        "2": 2,
+        "3": 5,
+        "4": 6,
+        "5": 13,
+        "6": 28,
+        "7": 93,
+        "8": 189,
+        "9": 270,
+        "10": 78
+      }
+    }
+  ],
+  "villain_ranking": [
+    {
+      "id": 10,
+      "code": "D10",
+      "name": "Extração de Dados de Dispositivos Móveis",
+      "short": "Extração Celulares",
+      "range": "91 a 100",
+      "average": 8.2,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 59,
+      "below_7_pct": 8.56,
+      "below_6_count": 31,
+      "sole_cause_count": 27,
+      "distribution": {
+        "0": 1,
+        "1": 4,
+        "2": 2,
+        "3": 5,
+        "4": 6,
+        "5": 13,
+        "6": 28,
+        "7": 93,
+        "8": 189,
+        "9": 270,
+        "10": 78
+      }
+    },
+    {
+      "id": 6,
+      "code": "D06",
+      "name": "Investigação de Homicídios e Feminicídios",
+      "short": "Homicídios/Femin.",
+      "range": "51 a 60",
+      "average": 8.55,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 46,
+      "below_7_pct": 6.68,
+      "below_6_count": 16,
+      "sole_cause_count": 18,
+      "distribution": {
+        "0": 2,
+        "1": 2,
+        "2": 0,
+        "3": 0,
+        "4": 2,
+        "5": 10,
+        "6": 30,
+        "7": 77,
+        "8": 148,
+        "9": 250,
+        "10": 168
+      }
+    },
+    {
+      "id": 4,
+      "code": "D04",
+      "name": "Sistemas de Informações Policiais",
+      "short": "Sistemas Policiais",
+      "range": "31 a 40",
+      "average": 8.93,
+      "max": 10,
+      "min": 1,
+      "below_7_count": 34,
+      "below_7_pct": 4.93,
+      "below_6_count": 14,
+      "sole_cause_count": 11,
+      "distribution": {
+        "0": 0,
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 6,
+        "6": 20,
+        "7": 40,
+        "8": 112,
+        "9": 222,
+        "10": 281
+      }
+    },
+    {
+      "id": 2,
+      "code": "D02",
+      "name": "Gestão de Seção de Investig. e Operações",
+      "short": "Seção Investig./Op.",
+      "range": "11 a 20",
+      "average": 8.84,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 29,
+      "below_7_pct": 4.21,
+      "below_6_count": 16,
+      "sole_cause_count": 8,
+      "distribution": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 3,
+        "4": 5,
+        "5": 5,
+        "6": 13,
+        "7": 53,
+        "8": 120,
+        "9": 244,
+        "10": 243
+      }
+    },
+    {
+      "id": 5,
+      "code": "D05",
+      "name": "Preservação da Prova e Local do Crime",
+      "short": "Preservação/Local",
+      "range": "41 a 50",
+      "average": 8.9,
+      "max": 10,
+      "min": 1,
+      "below_7_count": 24,
+      "below_7_pct": 3.48,
+      "below_6_count": 8,
+      "sole_cause_count": 8,
+      "distribution": {
+        "0": 0,
+        "1": 1,
+        "2": 0,
+        "3": 1,
+        "4": 1,
+        "5": 5,
+        "6": 16,
+        "7": 41,
+        "8": 129,
+        "9": 267,
+        "10": 228
+      }
+    },
+    {
+      "id": 3,
+      "code": "D03",
+      "name": "Relatório de Investigação",
+      "short": "Relatório Investig.",
+      "range": "21 a 30",
+      "average": 8.67,
+      "max": 10,
+      "min": 2,
+      "below_7_count": 18,
+      "below_7_pct": 2.61,
+      "below_6_count": 8,
+      "sole_cause_count": 5,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 3,
+        "3": 1,
+        "4": 1,
+        "5": 3,
+        "6": 10,
+        "7": 46,
+        "8": 194,
+        "9": 298,
+        "10": 133
+      }
+    },
+    {
+      "id": 1,
+      "code": "D01",
+      "name": "Gestão de Expedientes e Proc. Cartorários",
+      "short": "Cartorários",
+      "range": "01 a 10",
+      "average": 9.14,
+      "max": 10,
+      "min": 3,
+      "below_7_count": 16,
+      "below_7_pct": 2.32,
+      "below_6_count": 7,
+      "sole_cause_count": 2,
+      "distribution": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 2,
+        "4": 1,
+        "5": 4,
+        "6": 9,
+        "7": 31,
+        "8": 100,
+        "9": 223,
+        "10": 319
+      }
+    },
+    {
+      "id": 9,
+      "code": "D09",
+      "name": "Investig. de Corrupção e Contra Adm. Pública",
+      "short": "Corrupção/Adm. Púb.",
+      "range": "81 a 90",
+      "average": 8.96,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 15,
+      "below_7_pct": 2.18,
+      "below_6_count": 10,
+      "sole_cause_count": 0,
+      "distribution": {
+        "0": 1,
+        "1": 1,
+        "2": 0,
+        "3": 5,
+        "4": 0,
+        "5": 3,
+        "6": 5,
+        "7": 18,
+        "8": 96,
+        "9": 385,
+        "10": 175
+      }
+    },
+    {
+      "id": 7,
+      "code": "D07",
+      "name": "Investigação de Tráfico de Drogas",
+      "short": "Tráfico de Drogas",
+      "range": "61 a 70",
+      "average": 9.4,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 12,
+      "below_7_pct": 1.74,
+      "below_6_count": 8,
+      "sole_cause_count": 0,
+      "distribution": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 0,
+        "4": 3,
+        "5": 2,
+        "6": 4,
+        "7": 15,
+        "8": 52,
+        "9": 194,
+        "10": 416
+      }
+    },
+    {
+      "id": 8,
+      "code": "D08",
+      "name": "Investigação de Crimes Contra o Patrimônio",
+      "short": "Crimes Patrimônio",
+      "range": "71 a 80",
+      "average": 9.53,
+      "max": 10,
+      "min": 0,
+      "below_7_count": 11,
+      "below_7_pct": 1.6,
+      "below_6_count": 9,
+      "sole_cause_count": 0,
+      "distribution": {
+        "0": 1,
+        "1": 2,
+        "2": 1,
+        "3": 2,
+        "4": 0,
+        "5": 3,
+        "6": 2,
+        "7": 9,
+        "8": 28,
+        "9": 167,
+        "10": 474
+      }
+    }
+  ],
+  "histogram": [
+    {
+      "range": "< 60",
+      "min": 0,
+      "max": 59,
+      "count": 10,
+      "approved": 0,
+      "failed_disc": 0,
+      "failed_total": 10
+    },
+    {
+      "range": "60-69",
+      "min": 60,
+      "max": 69,
+      "count": 11,
+      "approved": 0,
+      "failed_disc": 0,
+      "failed_total": 11
+    },
+    {
+      "range": "70-74",
+      "min": 70,
+      "max": 74,
+      "count": 7,
+      "approved": 0,
+      "failed_disc": 7,
+      "failed_total": 0
+    },
+    {
+      "range": "75-79",
+      "min": 75,
+      "max": 79,
+      "count": 13,
+      "approved": 0,
+      "failed_disc": 13,
+      "failed_total": 0
+    },
+    {
+      "range": "80-84",
+      "min": 80,
+      "max": 84,
+      "count": 63,
+      "approved": 24,
+      "failed_disc": 39,
+      "failed_total": 0
+    },
+    {
+      "range": "85-89",
+      "min": 85,
+      "max": 89,
+      "count": 168,
+      "approved": 128,
+      "failed_disc": 40,
+      "failed_total": 0
+    },
+    {
+      "range": "90-94",
+      "min": 90,
+      "max": 94,
+      "count": 282,
+      "approved": 280,
+      "failed_disc": 2,
+      "failed_total": 0
+    },
+    {
+      "range": "95-100",
+      "min": 95,
+      "max": 100,
+      "count": 135,
+      "approved": 135,
+      "failed_disc": 0,
+      "failed_total": 0
+    }
+  ],
+  "top_failed_scores": [
+    {
+      "nome": "HELENARIO DA SILVA SERO",
+      "total": 93,
+      "pedido": 444,
+      "failing_disciplines": [
+        "Homicídios/Femin. (6 pts)"
+      ]
+    },
+    {
+      "nome": "CARLOS ALEFF DE CASTRO LUCENA",
+      "total": 90,
+      "pedido": 24057,
+      "failing_disciplines": [
+        "Relatório Investig. (6 pts)"
+      ]
+    },
+    {
+      "nome": "ANDRE MOTA DE FREITAS",
+      "total": 89,
+      "pedido": 11955,
+      "failing_disciplines": [
+        "Preservação/Local (6 pts)"
+      ]
+    },
+    {
+      "nome": "JANIELY ALENCAR DE OLIVEIRA",
+      "total": 89,
+      "pedido": 14155,
+      "failing_disciplines": [
+        "Homicídios/Femin. (6 pts)"
+      ]
+    },
+    {
+      "nome": "GABRIEL MATHEUS BRAGA DE OLIVEIRA",
+      "total": 89,
+      "pedido": 6643,
+      "failing_disciplines": [
+        "Homicídios/Femin. (6 pts)"
+      ]
+    },
+    {
+      "nome": "MIKAILL GADELHA DOS SANTOS",
+      "total": 89,
+      "pedido": 27161,
+      "failing_disciplines": [
+        "Extração Celulares (6 pts)"
+      ]
+    },
+    {
+      "nome": "RAFAEL MORAIS DO NASCIMENTO",
+      "total": 89,
+      "pedido": 3891,
+      "failing_disciplines": [
+        "Homicídios/Femin. (6 pts)"
+      ]
+    },
+    {
+      "nome": "PAULA RENATA DE SOUZA GONCALVES BATISTA",
+      "total": 88,
+      "pedido": 15127,
+      "failing_disciplines": [
+        "Preservação/Local (6 pts)"
+      ]
+    },
+    {
+      "nome": "PAULO ANTIOGENES BATISTA DA SILVA JUNIOR",
+      "total": 88,
+      "pedido": 28300,
+      "failing_disciplines": [
+        "Homicídios/Femin. (6 pts)"
+      ]
+    },
+    {
+      "nome": "CAIO CESAR MOURA DE AGUIAR",
+      "total": 88,
+      "pedido": 28651,
+      "failing_disciplines": [
+        "Relatório Investig. (6 pts)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none">
+  <!-- Mesmo Barco: Raio-X do Provão - Símbolo Geométrico -->
+  <defs>
+    <linearGradient id="scanBeam" x1="32" y1="32" x2="224" y2="224" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="rayAccent" x1="0" y1="128" x2="256" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+  </defs>
+
+  <!-- Base / Quilha do Barco (Solidez Institucional) -->
+  <path d="M48 184C80 216 176 216 208 184L216 160H40L48 184Z" fill="#1e3a8a" />
+
+  <!-- Casco Esquerdo (Vela / Proa) -->
+  <path d="M128 36L44 148H104L128 36Z" fill="#2563eb" />
+
+  <!-- Casco Direito com Feixe Transversal de Raio-X (Corte Analítico) -->
+  <path d="M128 36L152 148H212L128 36Z" fill="#1d4ed8" />
+
+  <!-- Feixe de Raio-X Diagnóstico (Lente Forense em 45°) -->
+  <path d="M36 128L128 36L220 128" stroke="#38bdf8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="128" cy="116" r="22" fill="#ffffff" stroke="#2563eb" stroke-width="8" />
+  <circle cx="128" cy="116" r="8" fill="#38bdf8" />
+
+  <!-- Linhas Tomográficas de Varredura / Análise -->
+  <line x1="72" y1="160" x2="184" y2="160" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+  <line x1="92" y1="184" x2="164" y2="184" stroke="#93c5fd" stroke-width="4" stroke-linecap="round" />
+</svg>

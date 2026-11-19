@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32" fill="none">
+  <defs>
+    <linearGradient id="scanBeam" x1="32" y1="32" x2="224" y2="224" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+  </defs>
+  <!-- Quilha -->
+  <path d="M48 184C80 216 176 216 208 184L216 160H40L48 184Z" fill="#1e3a8a" />
+  <!-- Vela Proa -->
+  <path d="M128 36L44 148H104L128 36Z" fill="#2563eb" />
+  <path d="M128 36L152 148H212L128 36Z" fill="#1d4ed8" />
+  <!-- Raio-X Óptico -->
+  <path d="M36 128L128 36L220 128" stroke="#38bdf8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="128" cy="116" r="22" fill="#ffffff" stroke="#2563eb" stroke-width="10" />
+  <circle cx="128" cy="116" r="9" fill="#38bdf8" />
+</svg>
