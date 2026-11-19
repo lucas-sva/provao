@@ -1,92 +1,166 @@
-# Mesmo Barco: Raio-X do Provão (PC-CE)
+<br />
+<div align="center">
+  <a href="https://github.com/lucas-sva/provao">
+    <img src="public/favicon.svg" alt="Mesmo Barco - Raio-X do Provão" width="120">
+  </a>
 
-[![Deploy to GitHub Pages](https://github.com/lucas-sva/provao/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/lucas-sva/provao/actions/workflows/deploy-pages.yml)
+<h3 align="center">Mesmo Barco: Raio-X do Provão</h3>
 
-Dashboard público, auditável e de alta precisão para a análise dos resultados oficiais do **Provão Final da Turma 1 (T1)** do Curso de Formação de Oficial Investigador da Polícia Civil do Estado do Ceará (**Comunicado Nº 284/2026-CEV/UECE**).
+  <p align="center">
+    Inteligência analítica e auditoria dos resultados da Turma 1 para a Turma 2 (PC-CE)
+    <br />
+    <a href="https://lucas-sva.github.io/provao/"><strong>Acessar aplicação online</strong></a> · <a href="docs/AUDITORIA.md"><strong>Explore a auditoria de dados</strong></a>
+    <br />
+    <br />
+  </p>
+</div>
 
-Construído sob o espírito comunitário do projeto irmão [Mesmo Barco](https://github.com/lucas-sva/mesmo-barco) por **Lucas Galdino**, este painel tem como missão primordial **gerar choque de realidade e conscientizar a Turma 2 (T2)** sobre a gravidade pedagógica e as armadilhas invisíveis desta avaliação decisiva.
+## Sobre o projeto
 
----
+O **Mesmo Barco: Raio-X do Provão** é uma plataforma analítica auditável desenvolvida para processar, correlacionar e expor os resultados oficiais da Avaliação de Verificação de Aprendizagem do Curso de Formação Profissional (CFP) para o cargo de Oficial Investigador de Polícia da Polícia Civil do Estado do Ceará (**Comunicado Nº 284/2026-CEV/UECE**).
 
-## 🚨 O Choque de Realidade: O que a T2 Precisa Saber
+O objetivo central do projeto é fornecer aos alunos da Turma 2 (T2) uma visão estatística fidedigna sobre a régua de corte e a distribuição de notas da primeira turma, evidenciando pontos críticos de reprovação e o impacto direto do provão na classificação final para escolha de lotação.
 
-A análise matemática dos 689 candidatos avaliados na T1 revela um cenário alarmante:
+### Principais constatações técnicas
 
-1. **Quase 1 a cada 5 alunos foi reprovado:** 122 candidatos (17,7%) não atingiram os perfis de aprovação na primeira chamada.
-2. **O perigo invisível do corte por disciplina:** Apenas 21 alunos (3,1%) caíram pela pontuação total (&lt; 80 pontos). **101 alunos (14,7%) foram eliminados exclusivamente por tirar menos de 7 em alguma matéria**, mesmo fazendo pontuações totais altíssimas!
-   - Aluno com **93 PONTOS** no total foi reprovado por tirar 6 em Homicídios e Feminicídios.
-   - Aluno com **90 PONTOS** no total foi reprovado por tirar 6 em Relatório de Investigação.
-   - Três alunos com **89 PONTOS** foram eliminados por uma única nota 6.
-3. **A Cilada da Matéria Única:** Desses 101 alunos que caíram na régua de disciplina, **79 candidatos (78,2%) foram derrubados por APENAS UMA disciplina**!
-4. **O Ranking das Matérias Vilãs:**
-   - 🥇 **1º Lugar:** *Extração de Dados de Dispositivos Móveis (Q. 91 a 100)*: derrubou 40 alunos (vilã única em 27 casos). Menor média de todas (8,20).
-   - 🥈 **2º Lugar:** *Investigação de Homicídios e Feminicídios (Q. 51 a 60)*: derrubou 30 alunos (vilã única em 18 casos).
-   - 🥉 **3º Lugar:** *Sistemas de Informações Policiais (Q. 31 a 40)*: derrubou 19 alunos (vilã única em 11 casos).
-5. **Reviravolta na Escolha de Lotação:** A nota do provão provocou saltos e quedas de mais de 100 posições na fila final, decidindo quem fica na capital, na região metropolitana ou vai para o interior distante.
+- **Universo avaliado:** 689 alunos presentes no provão da T1.
+- **Índice de reprovação:** 122 alunos (17,7%) não atingiram os perfis de aprovação na divulgação preliminar.
+- **Régua de disciplina como principal fator de eliminação:** Apenas 21 candidatos (3,1%) foram reprovados por pontuação global (&lt; 80 pontos). Em contraste, **101 candidatos (14,7%) foram eliminados exclusivamente pelo corte de 7 pontos por matéria**, mesmo obtendo notas gerais elevadas (casos registrados de 93, 90 e 89 pontos).
+- **Concentração em matéria única:** Dentre os reprovados no perfil de disciplina, **78,2% (79 candidatos)** foram desclassificados por apenas uma matéria.
+- **Disciplinas críticas:** *Extração de Dados de Dispositivos Móveis* (40 reprovações, sendo causa única em 27 casos) e *Investigação de Homicídios e Feminicídios* (30 reprovações, causa única em 18 casos) concentraram mais da metade das eliminações.
 
----
+A auditoria matemática completa e os critérios normativos da banca constam em [`docs/AUDITORIA.md`](docs/AUDITORIA.md).
 
-## 🖥️ Módulos da Aplicação
+## Arquitetura e design técnico
 
-1. **Visão Geral & Choque:** KPIs executivos, Termômetro visual das Vilãs do Provão, Histograma de notas com corte em 80 e o impacto real na reclassificação da 1ª fase.
-2. **Tabela Densa (Explorador Completo):** Busca instantânea por nome ou número de pedido (via Fuse.js), filtros multicritério por situação e matéria, ordenação por qualquer coluna e exportação dos dados filtrados em CSV.
-3. **Raio-X das 10 Disciplinas:** Análise individual detalhada de cada matéria com médias, distribuição de notas de 0 a 10 e orientações pedagógicas exclusivas para a T2.
-4. **Simulador de Risco T2 ("E se fosse você?"):** Calculadora tátil interativa onde o aluno simula suas 10 notas e recebe o diagnóstico instantâneo da banca (com botões de 1 clique para testar casos reais de choque da T1).
+A solução opera como uma aplicação web estática (SPA) de alta performance, sem backend em tempo real, com processamento e agregação prévia dos dados oficiais em pipeline local e distribuição via CDN através do GitHub Pages.
 
----
+```mermaid
+flowchart LR
+  subgraph sources [Fontes Oficiais]
+    PDF[Comunicado 284 CEV/UECE]
+    MB[Base Concurso 1a Fase]
+  end
 
-## 🎨 Design System e Rigor Visual
+  subgraph pipeline [Pipeline de Dados]
+    Parser[Parser & Extrator Python]
+    Auditor[Testes de Integridade]
+    Summary[Agregador Estatistico]
+  end
 
-A aplicação foi integralmente desenvolvida em **tons claros (*light mode*)** aplicando os preceitos de:
-- **`emil-design-eng` / `emil`:**
-  - Micro-interações táteis no pointer-down (`:active { transform: scale(0.97) }`).
-  - Prevenção total de jitter layout com números tabulares (`tabular-nums`) em 100% das métricas.
-  - Raios de borda concêntricos (`outer = inner + padding`).
-  - Balanceamento de texto (`text-wrap: balance` e `text-wrap: pretty`).
-  - Polimento mobile-native (`100dvh`, sem highlight de toque, inputs com fonte $\ge$ 16px).
-- **`antigravity-design-expert`:**
-  - Profundidade espacial e sensação de leveza (*weightlessness*).
-  - Cartões em glassmorphism translúcido suave (`backdrop-filter: blur(16px)` com `bg-white/80`).
-  - Sombras multicamadas suaves e difusas.
-- **`logo-design`:**
-  - Logotipo e marca geométrica em SVG vetorial escalável (`logo-mark.svg`), fundindo as linhas náuticas da proa com o feixe diagnóstico do raio-x.
+  subgraph data [Artefatos JSON]
+    SummaryJSON[provao_summary.json]
+    CandidatesJSON[candidates.json]
+  end
 
----
+  subgraph app [Frontend React 19]
+    Overview[Visao Geral & Metricas]
+    Table[Tabela Densa Fuse.js]
+    Disciplines[Raio-X das 10 Materias]
+    Simulator[Simulador de Risco T2]
+  end
 
-## 🛠️ Stack Tecnológica
-
-- **Frontend:** React 19 + TypeScript + Vite 8
-- **Estilização:** Tailwind CSS v4
-- **Busca:** Fuse.js 7 (fuzzy search client-side instantânea)
-- **Ícones:** Lucide React (alinhamento óptico)
-- **Delight:** Canvas-Confetti (acertos na simulação)
-- **Deploy:** GitHub Pages via GitHub Actions (Custo R$ 0)
-
----
-
-## 📂 Estrutura e Documentação para Próximos Agentes
-
-Toda a documentação técnica para continuidade do trabalho em qualquer máquina está disponível na pasta `docs/`:
-
-- **[docs/PLANO_IMPLEMENTACAO.md](docs/PLANO_IMPLEMENTACAO.md)**: Plano de arquitetura e requisitos originais.
-- **[docs/AUDITORIA.md](docs/AUDITORIA.md)**: Como os dados foram auditados, proveniência e regras da CEV/UECE.
-- **[docs/adr/](docs/adr/)**: Registros de Decisão Arquitetural (ADRs 0001 a 0005).
-
-### Executar Localmente
-```bash
-# Instalar dependências
-npm install --no-bin-links
-
-# Iniciar servidor local
-npm run dev
-
-# Rodar testes de integridade estatística
-npm run test:data
-
-# Compilar para produção
-npm run build
+  PDF --> Parser
+  MB --> Parser
+  Parser --> Auditor
+  Auditor --> Summary
+  Summary --> SummaryJSON
+  Summary --> CandidatesJSON
+  SummaryJSON --> app
+  CandidatesJSON --> Table
+  CandidatesJSON --> Simulator
 ```
 
----
+Decisões de engenharia e especificações detalhadas: [`docs/adr/`](docs/adr/), [`docs/PLANO_IMPLEMENTACAO.md`](docs/PLANO_IMPLEMENTACAO.md).
 
-*Projeto independente de colega para colega. Não possui vínculo institucional com a Polícia Civil do Ceará, CEV/UECE ou AESP/CE.*
+### Estrutura da solução
+
+```plaintext
+data/                Documentos oficiais em PDF e base histórica de candidatos
+docs/                Documentação técnica, auditoria e registros de decisão (ADRs)
+docs/adr/            Architecture Decision Records (0001 a 0005)
+public/data/         Artefatos JSON otimizados consumidos pela aplicação
+scripts/             Scripts Python de extração, auditoria e enriquecimento
+scripts/tests/       Suíte de testes de validação estatística e integridade
+src/assets/          Logotipo geométrico vetorial e identidade visual
+src/components/      Componentes de interface, cards métricos, gráficos e drawers
+src/views/           Módulos principais (Visão Geral, Tabela, Disciplinas, Simulador)
+src/lib/             Serviços de dados, motor de busca Fuse.js e cálculo de risco
+src/types/           Definições de tipos TypeScript estritos
+.github/workflows/   Pipeline CI/CD para deploy no GitHub Pages
+```
+
+### Built With
+
+* [![React][react-shield]][react-url]
+* [![TypeScript][typescript-shield]][typescript-url]
+* [![Vite][vite-shield]][vite-url]
+* [![Tailwind CSS][tailwind-shield]][tailwind-url]
+* [![Python][python-shield]][python-url]
+* [![GitHub Actions][gha-shield]][gha-url]
+
+## Como começar
+
+### Pré-requisitos
+
+* **Node.js 18+** (ou runtime compatível)
+* **Python 3.10+** (com `poppler-utils` para reprocessamento do PDF)
+
+### Instalação
+
+1. Clone o repositório:
+   ```sh
+   git clone https://github.com/lucas-sva/provao.git
+   cd provao
+   ```
+
+2. Instale as dependências:
+   ```sh
+   npm install --no-bin-links
+   ```
+
+3. Execute a suíte de testes de integridade dos dados:
+   ```sh
+   python3 scripts/tests/test_data_integrity.py -v
+   ```
+
+4. Inicie o servidor de desenvolvimento:
+   ```sh
+   npm run dev
+   ```
+
+5. Para gerar a build de produção:
+   ```sh
+   npm run build
+   ```
+
+## Roadmap
+
+- [x] Extração e auditoria dos 689 candidatos do Comunicado 284/2026-CEV/UECE
+- [x] Cruzamento integral com a base histórica do concurso (1ª fase do Mesmo Barco)
+- [x] Validação automatizada por testes unitários de integridade matemática
+- [x] Módulo de Visão Geral com KPIs, ranking de matérias vilãs e reclassificação
+- [x] Tabela densa com busca difusa (Fuse.js), filtros multicritério e exportação CSV
+- [x] Raio-X individual das 10 disciplinas operacionais com distribuição de notas
+- [x] Simulador de Risco T2 com parametrização em tempo real e testes de casos reais
+- [x] Pipeline automatizado de deploy para GitHub Pages via GitHub Actions
+
+## Contato
+
+Lucas Silva - [LinkedIn](https://www.linkedin.com/in/-lucassva/) - lucas.sva@outlook.com
+
+<p align="right">(<a href="#top">voltar ao topo</a>)</p>
+
+[react-shield]: https://img.shields.io/badge/React%2019-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[typescript-shield]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[vite-shield]: https://img.shields.io/badge/Vite%208-646CFF?style=for-the-badge&logo=vite&logoColor=white
+[tailwind-shield]: https://img.shields.io/badge/Tailwind%20CSS%20v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[python-shield]: https://img.shields.io/badge/Python%203-3776AB?style=for-the-badge&logo=python&logoColor=white
+[gha-shield]: https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white
+
+[react-url]: https://react.dev/
+[typescript-url]: https://www.typescriptlang.org/
+[vite-url]: https://vite.dev/
+[tailwind-url]: https://tailwindcss.com/
+[python-url]: https://www.python.org/
+[gha-url]: https://github.com/features/actions
