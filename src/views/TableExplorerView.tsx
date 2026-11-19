@@ -529,7 +529,14 @@ export const TableExplorerView: React.FC<TableExplorerViewProps> = ({
                       <td className="py-2.5 px-4 font-semibold text-slate-900 min-w-[220px]">
                         {c.nome}
                       </td>
-                      <td className="py-2.5 px-2 text-center tabular-nums text-slate-500">
+                      <td
+                        className="py-2.5 px-2 text-center tabular-nums text-slate-500 cursor-help"
+                        title={
+                          c.rank_concurso_geral
+                            ? `Entrada na T1: ${c.rank_1a_fase}º | Concurso Geral: #${c.rank_concurso_geral}${c.rank_pcd ? ` (PcD #${c.rank_pcd})` : ''}${c.rank_negro ? ` (Negro #${c.rank_negro})` : ''}`
+                            : `Classificação de entrada na T1: ${c.rank_1a_fase}º`
+                        }
+                      >
                         {c.rank_1a_fase ? `${c.rank_1a_fase}º` : '—'}
                       </td>
                       <td className="py-2.5 px-2 text-center">

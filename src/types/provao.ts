@@ -9,6 +9,11 @@ export interface Candidate {
   num_failing_disciplines: number;
   segment: 'Ampla' | 'Negro' | 'PCD' | string;
   rank_1a_fase: number | null;
+  rank_concurso_geral?: number | null;
+  rank_pcd?: number | null;
+  rank_negro?: number | null;
+  t1_seat_type?: string | null;
+  birth_date?: string | null;
   nota_objetiva_1a: number | null;
   nota_discursiva_1a: number | null;
   nota_total_1a: number | null;

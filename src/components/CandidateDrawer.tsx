@@ -48,6 +48,29 @@ export const CandidateDrawer: React.FC<CandidateDrawerProps> = ({
                     Pedido #{candidate.pedido}
                   </span>
                   <MetricBadge type="segment" value={candidate.segment} />
+                  {candidate.rank_concurso_geral && (
+                    <span
+                      className="text-xs font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200 tabular-nums"
+                      title="Classificação Geral no Concurso Amplo (Edital 17)"
+                    >
+                      Geral Concurso #{candidate.rank_concurso_geral}
+                    </span>
+                  )}
+                  {candidate.rank_pcd && (
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 tabular-nums">
+                      PcD #{candidate.rank_pcd}
+                    </span>
+                  )}
+                  {candidate.rank_negro && (
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200 tabular-nums">
+                      Negro #{candidate.rank_negro}
+                    </span>
+                  )}
+                  {candidate.t1_seat_type && (
+                    <span className="text-xs font-medium px-2 py-0.5 rounded-md bg-blue-50 text-blue-800 border border-blue-200/80">
+                      {candidate.t1_seat_type}
+                    </span>
+                  )}
                   <MetricBadge
                     type="situacao"
                     value={candidate.situacao}

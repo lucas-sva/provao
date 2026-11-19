@@ -95,15 +95,30 @@ def main():
         has_min_disciplina = (min_disc >= 7)
         has_min_total = (total >= 80)
 
-        # Enriquecimento com 1ª fase
+        # Enriquecimento com 1ª fase (auditado contra o repositório Mesmo Barco)
         mb_info = mb_map.get(pedido, {})
         segment = mb_info.get("segment", "Ampla")
-        rank_1a_fase = mb_info.get("rank_geral", None)
+        rank_concurso_geral = mb_info.get("rank_geral", None)
+        rank_pcd = mb_info.get("rank_pcd", None)
+        rank_negro = mb_info.get("rank_negro", None)
+        birth_date = mb_info.get("birth_date", None)
         scores_1a = mb_info.get("scores", {})
         nota_objetiva_1a = scores_1a.get("objetiva", None)
         nota_discursiva_1a = scores_1a.get("discursiva", None)
         nota_total_1a = scores_1a.get("total", None)
         sexo = mb_info.get("sex", None)
+
+        # Mapeamento do tipo de vaga na Turma 1
+        if mb_info.get("called_t1_imediata"):
+            t1_seat_type = "Vaga Imediata"
+        elif mb_info.get("called_t1_cr"):
+            t1_seat_type = f"Cadastro de Reserva ({mb_info.get('t1_cr_list') or 'CR'})"
+        elif mb_info.get("called_complementar"):
+            t1_seat_type = "Chamada Complementar"
+        elif mb_info.get("called_inferred_gap"):
+            t1_seat_type = "Convocação de Reposição"
+        else:
+            t1_seat_type = "Turma 1"
 
         # Identificar disciplinas onde tirou nota < 7
         failing_disciplines = [
@@ -120,7 +135,12 @@ def main():
             "failing_disciplines": failing_disciplines,
             "num_failing_disciplines": len(failing_disciplines),
             "segment": segment,
-            "rank_1a_fase": rank_1a_fase,
+            "rank_1a_fase": rank_concurso_geral,
+            "rank_concurso_geral": rank_concurso_geral,
+            "rank_pcd": rank_pcd,
+            "rank_negro": rank_negro,
+            "t1_seat_type": t1_seat_type,
+            "birth_date": birth_date,
             "nota_objetiva_1a": nota_objetiva_1a,
             "nota_discursiva_1a": nota_discursiva_1a,
             "nota_total_1a": nota_total_1a,
