@@ -12,16 +12,16 @@ import urllib.request
 from collections import Counter
 
 DISCIPLINES = [
-    {"id": 1, "code": "D01", "name": "Gestão de Expedientes e Proc. Cartorários", "short": "Cartorários", "range": "01 a 10"},
-    {"id": 2, "code": "D02", "name": "Gestão de Seção de Investig. e Operações", "short": "Seção Investig./Op.", "range": "11 a 20"},
-    {"id": 3, "code": "D03", "name": "Relatório de Investigação", "short": "Relatório Investig.", "range": "21 a 30"},
-    {"id": 4, "code": "D04", "name": "Sistemas de Informações Policiais", "short": "Sistemas Policiais", "range": "31 a 40"},
-    {"id": 5, "code": "D05", "name": "Preservação da Prova e Local do Crime", "short": "Preservação/Local", "range": "41 a 50"},
-    {"id": 6, "code": "D06", "name": "Investigação de Homicídios e Feminicídios", "short": "Homicídios/Femin.", "range": "51 a 60"},
+    {"id": 1, "code": "D01", "name": "Gestão de Procedimentos Cartorários", "short": "Procedimentos Cartorários", "range": "01 a 10"},
+    {"id": 2, "code": "D02", "name": "Gestão de Seção de Investigação e Operações", "short": "Seção de Investigação e Operações", "range": "11 a 20"},
+    {"id": 3, "code": "D03", "name": "Relatório de Investigação Policial", "short": "Relatório de Investigação", "range": "21 a 30"},
+    {"id": 4, "code": "D04", "name": "Sistemas de Informações Policiais", "short": "Sistemas de Informações Policiais", "range": "31 a 40"},
+    {"id": 5, "code": "D05", "name": "Preservação da Prova e Local do Crime", "short": "Preservação da Prova e Local", "range": "41 a 50"},
+    {"id": 6, "code": "D06", "name": "Investigação de Homicídios e Feminicídios", "short": "Homicídios e Feminicídios", "range": "51 a 60"},
     {"id": 7, "code": "D07", "name": "Investigação de Tráfico de Drogas", "short": "Tráfico de Drogas", "range": "61 a 70"},
-    {"id": 8, "code": "D08", "name": "Investigação de Crimes Contra o Patrimônio", "short": "Crimes Patrimônio", "range": "71 a 80"},
-    {"id": 9, "code": "D09", "name": "Investig. de Corrupção e Contra Adm. Pública", "short": "Corrupção/Adm. Púb.", "range": "81 a 90"},
-    {"id": 10, "code": "D10", "name": "Extração de Dados de Dispositivos Móveis", "short": "Extração Celulares", "range": "91 a 100"},
+    {"id": 8, "code": "D08", "name": "Investigação de Crimes Contra o Patrimônio", "short": "Crimes Contra o Patrimônio", "range": "71 a 80"},
+    {"id": 9, "code": "D09", "name": "Investigação de Corrupção e Contra a Administração Pública", "short": "Corrupção e Crimes Funcionais", "range": "81 a 90"},
+    {"id": 10, "code": "D10", "name": "Extração de Dados de Dispositivos Móveis", "short": "Extração de Dados Móveis", "range": "91 a 100"},
 ]
 
 def main():

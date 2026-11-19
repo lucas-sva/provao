@@ -9,9 +9,9 @@ export default defineConfig({
     tailwindcss(),
   ],
   base: '/provao/',
-  publicDir: false,
+  publicDir: 'public',
   build: {
-    emptyOutDir: false,
+    emptyOutDir: true,
   },
   server: {
     port: 3000,

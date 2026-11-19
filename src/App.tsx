@@ -7,7 +7,6 @@ import { CandidateDrawer } from './components/CandidateDrawer';
 import { OverviewView } from './views/OverviewView';
 import { TableExplorerView } from './views/TableExplorerView';
 import { DisciplinesView } from './views/DisciplinesView';
-import { SimulatorView } from './views/SimulatorView';
 import { Loader2, AlertCircle, Shield } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -75,12 +74,16 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
-      {/* Top Sticky Header */}
-      <BrandHeader />
+      {/* Top Sticky Header with Desktop Nav & Mobile Hamburger */}
+      <BrandHeader
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        candidateCount={candidates.length}
+      />
 
       {/* Main Content Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Navigation Tabs */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6">
+        {/* Mobile-only Segmented Navigation Bar */}
         <TabNavigation
           activeTab={activeTab}
           onTabChange={setActiveTab}
@@ -93,7 +96,6 @@ export const App: React.FC = () => {
             summary={summary}
             candidates={candidates}
             onSelectCandidate={setSelectedCandidate}
-            onNavigateToSimulator={() => setActiveTab('simulator')}
             onSelectDiscipline={handleFilterTableByDiscipline}
           />
         )}
@@ -115,10 +117,6 @@ export const App: React.FC = () => {
             onFilterTableByDiscipline={handleFilterTableByDiscipline}
           />
         )}
-
-        {activeTab === 'simulator' && (
-          <SimulatorView disciplines={summary.disciplines} />
-        )}
       </main>
 
       {/* Candidate Detailed Radiograph Drawer */}
@@ -129,21 +127,21 @@ export const App: React.FC = () => {
       />
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-slate-200/90 bg-white/80 py-8 text-xs text-slate-500">
+      <footer className="mt-auto border-t border-slate-200/90 bg-white/90 py-6 sm:py-8 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-center sm:text-left">
             <Shield className="w-4 h-4 text-blue-600 flex-shrink-0" />
             <span>
-              <strong>Mesmo Barco: Raio-X do Provão</strong> · Ferramenta comunitária auditável criada por Lucas Galdino.
+              <strong>Mesmo Barco: Raio-X do Provão</strong> · Painel de auditoria comunitária criado por Lucas Galdino.
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center">
             <a
               href="https://lucas-sva.github.io/mesmo-barco/"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-slate-900 transition-colors"
+              className="hover:text-slate-900 transition-colors font-medium"
             >
               Mesmo Barco (App)
             </a>
@@ -152,16 +150,16 @@ export const App: React.FC = () => {
               href="https://github.com/lucas-sva/provao"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-slate-900 transition-colors"
+              className="hover:text-slate-900 transition-colors font-medium"
             >
-              GitHub deste Projeto
+              GitHub
             </a>
             <span>·</span>
             <a
               href="https://www.cev.uece.br"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-slate-900 transition-colors"
+              className="hover:text-slate-900 transition-colors font-medium"
             >
               Portal CEV/UECE
             </a>

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ActiveTab } from '../types/provao';
-import { LayoutDashboard, Table2, BookOpen, Calculator } from 'lucide-react';
+import { LayoutDashboard, Table2, BookOpen } from 'lucide-react';
 
 interface TabNavigationProps {
   activeTab: ActiveTab;
@@ -18,30 +18,26 @@ export const TabNavigation: React.FC<TabNavigationProps> = ({
       id: 'overview' as ActiveTab,
       label: 'Visão Geral',
       icon: LayoutDashboard,
-      badge: 'Panorama T1',
     },
     {
       id: 'explorer' as ActiveTab,
-      label: 'Tabela de Candidatos',
+      label: 'Candidatos',
+      badge: `${candidateCount}`,
       icon: Table2,
-      badge: `${candidateCount} alunos`,
     },
     {
       id: 'disciplines' as ActiveTab,
-      label: 'Análise por Disciplina',
+      label: 'Disciplinas',
+      badge: '10',
       icon: BookOpen,
-      badge: '10 Matérias',
-    },
-    {
-      id: 'simulator' as ActiveTab,
-      label: 'Simulador de Critérios',
-      icon: Calculator,
-      badge: 'Interativo',
     },
   ];
 
   return (
-    <nav className="w-full bg-slate-100/90 p-1 rounded-xl border border-slate-200 shadow-xs overflow-x-auto flex items-center gap-1 scrollbar-none">
+    <nav
+      className="md:hidden w-full bg-slate-100 p-1 rounded-xl border border-slate-200 shadow-2xs flex items-center gap-1"
+      aria-label="Navegação rápida móvel"
+    >
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -50,24 +46,24 @@ export const TabNavigation: React.FC<TabNavigationProps> = ({
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
-            className={`tactile-button flex-1 min-w-[130px] sm:min-w-0 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-120 cursor-pointer ${
+            className={`tactile-button flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg text-xs font-bold transition-all duration-140 cursor-pointer ${
               isActive
-                ? 'bg-white text-slate-900 shadow-xs border border-slate-200/80 font-bold'
+                ? 'bg-white text-slate-900 shadow-xs border border-slate-200/90'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
             }`}
           >
             <Icon
-              className={`w-4 h-4 flex-shrink-0 ${
+              className={`w-3.5 h-3.5 flex-shrink-0 ${
                 isActive ? 'text-blue-700' : 'text-slate-400'
               }`}
             />
-            <span className="truncate">{tab.label}</span>
+            <span className="whitespace-nowrap">{tab.label}</span>
             {tab.badge && (
               <span
-                className={`hidden md:inline-block text-[11px] px-1.5 py-0.2 rounded font-normal tabular-nums ${
+                className={`text-[10px] px-1.5 py-0.2 rounded font-semibold tabular-nums whitespace-nowrap ${
                   isActive
-                    ? 'bg-slate-100 text-slate-700 border border-slate-200'
-                    : 'bg-slate-200/70 text-slate-500'
+                    ? 'bg-blue-50 text-blue-700 border border-blue-200/80'
+                    : 'bg-slate-200/80 text-slate-500'
                 }`}
               >
                 {tab.badge}

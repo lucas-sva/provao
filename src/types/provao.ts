@@ -82,4 +82,4 @@ export interface ProvaoSummary {
   top_failed_scores: TopFailedScore[];
 }
 
-export type ActiveTab = 'overview' | 'explorer' | 'disciplines' | 'simulator';
+export type ActiveTab = 'overview' | 'explorer' | 'disciplines';
